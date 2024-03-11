@@ -1,5 +1,5 @@
 <?php
-require_once 'DB.php';
+require_once './src/DB.php';
 require_once 'DBRows.php';
 
 class DBColumn extends DB

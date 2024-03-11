@@ -9,6 +9,8 @@ $DBColumn = new DBColumn();
 $DBRows = new DBRows();
 $DBWh = new DBWarehouse();
 $DBProduct = new DBProducts();
+$DB = new DB();
+$DB->createDatabase();
 
 $DBColumn -> fillTableColumn();
 $DBRows -> fillTableRows();

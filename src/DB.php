@@ -4,27 +4,32 @@ class DB
 {
     protected $mysqli;
 
-    function __construct($host = 'localhost', $user = 'root', $password = null)
-    {
-        $conn = $this->mysqli = mysqli_connect($host, $user, $password);
+    function createDatabase(){
+      $this->mysqli = mysqli_connect('localhost', 'root', null);
 
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
+        if ($this->mysqli->connect_error) {
+            die("Connection failed: " . $this->mysqli->connect_error);
           }
           
           // Create database
           $sql = "CREATE DATABASE IF NOT EXISTS raktarak";
-          if ($conn->query($sql) === TRUE) {
-            echo "Database created successfully";
-          } else {
-            echo "Error creating database: " . $conn->error;
+          if (!$this->mysqli->query($sql) === TRUE) {
+            echo "Error creating database: " . $this->mysqli->error;
           }
-          
-          $conn->close();
+    }
+    function __construct($host = 'localhost', $user = 'root', $password = null)
+    {
+        $this->mysqli = mysqli_connect($host, $user, $password, 'raktarak');
+
+        if ($this->mysqli->connect_error) {
+            die("Connection failed: " . $this->mysqli->connect_error);
+          }
     }
 
     function __destruct()
     {
         $this->mysqli->close();
     }
+
+    
 }
